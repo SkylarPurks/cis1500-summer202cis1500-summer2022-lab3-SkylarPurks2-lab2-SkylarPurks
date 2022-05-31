@@ -1,14 +1,12 @@
 package lab3;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Lab3 {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
-
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
-        numberFormat.setMaximumFractionDigits(3);
 
         System.out.println("Enter your first value: ");
         double valueOne = Double.parseDouble(keyboard.nextLine());
@@ -31,17 +29,30 @@ public class Lab3 {
 
         double averageValue = (valueOne+valueTwo+valueThree+valueFour+valueFive)/5;
 
-        double standardDeviationOne = Math.sqrt(valueOne-averageValue);
-        double standardDeviationTwo = Math.sqrt(valueTwo-averageValue);
-        double standardDeviationThree = Math.sqrt(valueThree-averageValue);
-        double standardDeviationFour = Math.sqrt(valueFour-averageValue);
-        double standardDeviationFive = Math.sqrt(valueFive-averageValue);
-        double standardDeviationTotal = ((standardDeviationOne + standardDeviationTwo + standardDeviationThree + standardDeviationFour + standardDeviationFive)/5);
+        double standardDeviationOne = (valueOne-averageValue);
+        double standardDeviationOneSquared = Math.pow(standardDeviationOne, 2);
+
+        double standardDeviationTwo = (valueTwo-averageValue);
+        double standardDeviationTwoSquared = Math.pow(standardDeviationTwo, 2);
+
+        double standardDeviationThree = (valueThree-averageValue);
+        double standardDeviationThreeSquared = Math.pow(standardDeviationThree, 2);
+
+        double standardDeviationFour = (valueFour-averageValue);
+        double standardDeviationFourSquared = Math.pow(standardDeviationFour, 2);
+
+        double standardDeviationFive = (valueFive-averageValue);
+        double standardDeviationFiveSquared = Math.pow(standardDeviationFive, 2);
+
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        numberFormat.setMaximumFractionDigits(3);
+        
+        double standardDeviationTotal = ((standardDeviationOneSquared + standardDeviationTwoSquared + standardDeviationThreeSquared + standardDeviationFourSquared + standardDeviationFiveSquared)/5);
         double finalStandardDeviation = Math.sqrt(standardDeviationTotal);
 
         System.out.println("Min value: " + minValue);
         System.out.println("Max value: " + maxValue);
         System.out.println("Average value: " + averageValue);
-        System.out.println("Standard deviation value: " + standardDeviationTotal + " "+ finalStandardDeviation);
+        System.out.println("Standard deviation value: "  + finalStandardDeviation);
     }
 }
